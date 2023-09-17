@@ -21,18 +21,26 @@ export default function Auth() {
     try {
       if (user.password != "" && user.username != "") {
         const result = await axios.post(url + path, user);
-        if (result.data.accessToken) {
-          localStorage.setItem("token", result.data.accessToken);
-          navigate("/");
+        if (result.data) {
+          if (result.data.accessToken) {
+            localStorage.setItem("token", result.data.accessToken);
+            navigate("/");
+          }
+        } else {
+          setError("Could not connect to the server!");
         }
       } else {
         setError("Please fill in all fields!");
       }
     } catch (err) {
-      if (err.response.status == 401) {
-        setError("Username or password is incorrect!");
+      if (err.response) {
+        if (err.response.status == 401) {
+          setError("Username or password is incorrect!");
+        } else {
+          setError(err.response.data.message);
+        }
       } else {
-        setError(err.response.data.message);
+        setError("Could not connect to the server!");
       }
     }
   };
