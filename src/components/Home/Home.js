@@ -38,8 +38,8 @@ export default function Home() {
     }
   };
 
-  const downloadFile = async (path, name) => {
-    const result = await axios.get(path, {
+  const downloadFile = async (code, name) => {
+    const result = await axios.get(`${url}/download/${code}`, {
       headers: { Authorization: token },
       responseType: "blob",
     });
@@ -78,8 +78,8 @@ export default function Home() {
     }
   };
 
-  const deleteFile = async (id) => {
-    await axios.delete(`${url}/${id}`, {
+  const deleteFile = async (code) => {
+    await axios.delete(`${url}/${code}`, {
       headers: { Authorization: token },
     });
     loadFiles();
@@ -155,14 +155,14 @@ export default function Home() {
                   <td>
                     <button
                       className="btn btn-outline-success"
-                      onClick={() => downloadFile(file.path, file.name)}
+                      onClick={() => downloadFile(file.code, file.name)}
                     >
                       Download
                     </button>
                     <button
                       type="button"
                       className="btn btn-outline-danger mx-2"
-                      onClick={() => deleteFile(file.id)}
+                      onClick={() => deleteFile(file.code)}
                     >
                       Delete
                     </button>
