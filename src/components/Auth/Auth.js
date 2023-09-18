@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 
 export default function Auth() {
-  const url = "http://localhost:8080/auth/";
+  const url = "https://file-operations-backend-git-konyaizmir111-dev.apps.sandbox-m4.g2pi.p1.openshiftapps.com/auth/";
   const navigate = useNavigate();
   const [error, setError] = useState(null);
   const [user, setUser] = useState({

@@ -4,7 +4,7 @@ import Navbar from "../Navbar/Navbar";
 import axios from "axios";
 
 export default function Home() {
-  const url = "http://localhost:8080/files";
+  const url = "https://file-operations-backend-git-konyaizmir111-dev.apps.sandbox-m4.g2pi.p1.openshiftapps.com/files";
   let anchor = document.createElement("a");
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
